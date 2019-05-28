@@ -9,7 +9,7 @@ function main() {
         document.getElementById("slow-network").classList.remove("d-none");
     }, 5000);
     var code = location.hash.substr(1);
-    document.querySelector("title").innerHTML += code;
+    document.querySelector("title").innerHTML = "Country Explorer - " + code;
     //Fetch API used to fetch the countries
     var myRequest = new Request("https://restcountries.eu/rest/v2/alpha/" + code);
     fetch(
