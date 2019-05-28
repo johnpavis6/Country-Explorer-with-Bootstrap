@@ -62,7 +62,7 @@ function start() {
     for (var i = 0; i < countries.length; i++) {
         var code = html;
         tags.forEach(tag => {
-            code = code.replace(`{{${tag}}}`, countries[i][tag]);
+            code = code.replace(`{{${tag}}}`, countries[i][tag] || '-');
         });
         var _region = [];
         if (countries[i].subregion) {
@@ -83,11 +83,11 @@ function start() {
         cardDeck.appendChild(div);
         // cardDeck.innerHTML += code;
         /*inserting specific values like country name,region,etc. to Trie node*/
-        buildTrie(countries[i].name.toLowerCase(), keywords, i);
-        buildTrie(countries[i].subregion.toLowerCase(), keywords, i);
-        buildTrie(countries[i].region.toLowerCase(), keywords, i);
-        buildTrie(countries[i].capital.toLowerCase(), keywords, i);
-        buildTrie(countries[i].alpha3Code.toLowerCase(), keywords, i);
+        buildTrie(countries[i].name.toLowerCase() || '', keywords, i);
+        buildTrie(countries[i].subregion.toLowerCase() || '', keywords, i);
+        buildTrie(countries[i].region.toLowerCase() || '', keywords, i);
+        buildTrie(countries[i].capital.toLowerCase() || '', keywords, i);
+        buildTrie(countries[i].alpha3Code.toLowerCase() || '', keywords, i);
     }
     console.log(keywords);
 }

@@ -3,6 +3,9 @@ function main() {
     document.getElementById("invalid-country").classList.add("d-none");
     document.getElementById("content").classList.add("d-none");
     var slownetwork = setTimeout(function () {
+        /*
+        Show slow network if the time taken for response is more than threshold
+        */
         document.getElementById("slow-network").classList.remove("d-none");
     }, 5000);
     var code = location.hash.substr(1);
@@ -24,6 +27,9 @@ function main() {
 main();
 window.onhashchange = main;
 function start(data) {
+    /*
+    Displays the fetched country detail
+    */
     document.getElementById("loader").style.display = "none";
     if (data == null || data.status == 400) {
         document.getElementById("invalid-country").classList.remove("d-none");
