@@ -1,8 +1,11 @@
 var slownetwork = setTimeout(function () {
-    console.log("called");
+    /*
+    Show slow network if the time taken for response is more than threshold
+    */
     document.getElementById("slow-network").classList.remove("d-none");
 }, 5000);
 var countries = [];
+//Fetch API used to fetch the details of specific country
 var myRequest = new Request("https://restcountries.eu/rest/v2/all");
 fetch(
     myRequest
@@ -17,6 +20,9 @@ fetch(
 });
 var keywords = {};
 function start() {
+    /*
+    Displays the fetched country details as cards
+    */
     document.getElementById("loader").style.display = "none";
     document.getElementById("content").classList.remove("d-none");
     var cardDeck = document.getElementById("card-deck");
@@ -25,26 +31,26 @@ function start() {
         <div class="card-header d-flex">
             <div>
                 <div class="font-weight-bold">{{name}}</div>
-                <small>{{subregion}}, {{region}}</small>
+                <small>{{region}}</small>
             </div>
             <img src="{{flag}}" class="flag ml-auto">
         </div>
         <div class="card-body">
             <table class="table-bordered" width="100%">
                 <tr>
-                    <td class="font-italic">Capital</td>
+                    <td class="h6">Capital</td>
                     <td>{{capital}}</td>
                 </tr>
                 <tr>
-                    <td class="font-italic">Native Name</td>
+                    <td class="h6">Native Name</td>
                     <td>{{nativeName}}</td>
                 </tr>
                 <tr>
-                    <td class="font-italic">Population</td>
+                    <td class="h6">Population</td>
                     <td>{{population}}</td>
                 </tr>
                 <tr>
-                    <td class="font-italic">Code</td>
+                    <td class="h6">Code</td>
                     <td>{{alpha3Code}}</td>
                 </tr>
             </table>
@@ -52,14 +58,20 @@ function start() {
         <!-- <div class="card-footer"></div> -->
     </div>`;
     // html = html.replace("d-none", "");
-    var tags = ["name", "flag", "subregion", "region",
-        "capital", "nativeName", "population", "alpha3Code"];
-    var btags = [0, 2, 3, 4, 7];
+    var tags = ["name", "flag", "capital", "nativeName", "population", "alpha3Code"];
     for (var i = 0; i < countries.length; i++) {
         var code = html;
         tags.forEach(tag => {
             code = code.replace(`{{${tag}}}`, countries[i][tag]);
         });
+        var _region = [];
+        if (countries[i].subregion) {
+            _region.push(countries[i].subregion);
+        }
+        if (countries[i].region) {
+            _region.push(countries[i].region);
+        }
+        code = code.replace('{{region}}', _region);
         var div = document.createElement("div");
         div.onclick = function () {
             redirect(this.id);
@@ -70,10 +82,12 @@ function start() {
         div.innerHTML = code;
         cardDeck.appendChild(div);
         // cardDeck.innerHTML += code;
-        btags.forEach(ind => {
-            buildTrie(countries[i][tags[ind]].toLowerCase(), keywords, i);
-            //inserting specific values like country name,region,etc. to Trie node
-        });
+        /*inserting specific values like country name,region,etc. to Trie node*/
+        buildTrie(countries[i].name.toLowerCase(), keywords, i);
+        buildTrie(countries[i].subregion.toLowerCase(), keywords, i);
+        buildTrie(countries[i].region.toLowerCase(), keywords, i);
+        buildTrie(countries[i].capital.toLowerCase(), keywords, i);
+        buildTrie(countries[i].alpha3Code.toLowerCase(), keywords, i);
     }
     console.log(keywords);
 }

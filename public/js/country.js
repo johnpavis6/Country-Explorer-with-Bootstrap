@@ -7,6 +7,7 @@ function main() {
     }, 5000);
     var code = location.hash.substr(1);
     document.querySelector("title").innerHTML += code;
+    //Fetch API used to fetch the countries
     var myRequest = new Request("https://restcountries.eu/rest/v2/alpha/" + code);
     fetch(
         myRequest
