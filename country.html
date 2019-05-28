@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Country Explorer - </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/css/common.css">
+    <link rel="stylesheet" href="public/css/loader.css">
+    <link rel="stylesheet" href="public/css/country.css">
+</head>
+
+<body>
+    <div class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <span class="navbar-brand"><i class="fas fa-globe"></i> Country Explorer</span>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <a href="index.html">Back</a>
+        <hr>
+        <div id="loader">
+            <div id="loader-content">
+                <span id="loader-text" class="font-weight-bold">Fetching data</span>
+                <!-- <span class="loader-dot" id="loader-dot-1">.</span>
+                        <span class="loader-dot" id="loader-dot-2">.</span>
+                        <span class="loader-dot" id="loader-dot-3">.</span> -->
+            </div>
+            <div id="loader-icon"></div>
+            <div id="slow-network" class="d-none">Slow network detected</div>
+        </div>
+        <div class="alert alert-warning d-none" id="invalid-country">Invalid Country</div>
+        <div id="content" class="d-none">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card tab">
+                        <h1 id="name"></h1>
+                    </div>
+                    <div class="card tab">
+                        <img id="flag" id="flag">
+                    </div>
+                    <div class="card tab">
+                        <h3>Codes</h3>
+                        <table class="table-bordered" width="100%">
+                            <tr>
+                                <td class="h6">ISO 3166-1 alpha-2</td>
+                                <td id="alpha2Code"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">ISO 3166-1 alpha-3</td>
+                                <td id="alpha3Code"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">ISO 3166-1 numeric</td>
+                                <td id="numericCode"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">International calling code</td>
+                                <td id="callingCodes"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Top level domain</td>
+                                <td id="topLevelDomain"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card tab">
+                        <h3>Borders</h3>
+                        <table class="table-bordered" width="100%" id="borders"></table>
+                    </div>
+                    <div class="card tab">
+                        <h3>Alternate Spellings</h3>
+                        <table class="table-bordered" width="100%" id="altSpellings"></table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card tab">
+                        <h3>Overview</h3>
+                        <table class="table-bordered" width="100%">
+                            <tr>
+                                <td class="h6">Native Name</td>
+                                <td id="nativeName"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Capitial</td>
+                                <td id="capital"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Subregion</td>
+                                <td id="subregion"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Region</td>
+                                <td id="region"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Demonym</td>
+                                <td id="demonym"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Population</td>
+                                <td id="population"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Area</td>
+                                <td><span id="area"></span> <span>km<sup>2</sup></span></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Lat & Lng</td>
+                                <td id="latlng"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Timezones</td>
+                                <td id="timezones"></td>
+                            </tr>
+                            <tr>
+                                <td class="h6">Gini Index</td>
+                                <td id="gini"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card tab">
+                        <h3>Languages</h3>
+                        <table class="table-bordered" width="100%" id="languages"></table>
+                    </div>
+                    <div class="card tab">
+                        <h3>Translations</h3>
+                        <table class="table-bordered" width="100%" id="translations"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="public/js/country.js"></script>
+
+</html>

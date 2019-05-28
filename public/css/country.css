@@ -1,0 +1,14 @@
+.card:hover {
+    box-shadow: 5px 5px 5px black;
+}
+
+.tab {
+    margin: 10px 0;
+    padding: 10px;
+}
+
+#flag {
+    margin: auto;
+    width: 70%;
+    height: 200px;
+}
